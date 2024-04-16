@@ -8,6 +8,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 
 public class LoguinController {
 
@@ -39,17 +40,18 @@ public class LoguinController {
     private TextField txtUsuario;
 
     @FXML
-    void cerrarAplicacion(ActionEvent event) {
+    public void cerrarAplicacion(ActionEvent event) {
+    	Stage stage = (Stage) btnCancelar.getScene().getWindow();
+    	stage.close();
+    }
+
+    @FXML
+    public void eventKey(KeyEvent event) {
 
     }
 
     @FXML
-    void eventKey(KeyEvent event) {
-
-    }
-
-    @FXML
-    void loguearse(ActionEvent event) {
+    public void loguearse(ActionEvent event) {
 
     }
 
