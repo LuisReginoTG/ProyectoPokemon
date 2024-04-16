@@ -58,7 +58,7 @@
             </Label>
             <TextField fx:id="txtUsuario" layoutX="316.0" layoutY="150.0" onKeyTyped="#eventKey" />
             <Label fx:id="lblPass" layoutX="196.0" layoutY="196.0" text="Contraseña" textFill="#0d41fc" />
-            <Label layoutX="196.0" layoutY="231.0" prefHeight="17.0" prefWidth="331.0" text="error" textFill="#ee0303" visible="false" />
+            <Label fx:id="lblError" layoutX="196.0" layoutY="231.0" prefHeight="17.0" prefWidth="331.0" text="error" textFill="#ee0303" visible="false" />
             <Button fx:id="btnAceptar" layoutX="234.0" layoutY="273.0" mnemonicParsing="false" onAction="#loguearse" text="Aceptar" />
             <Button fx:id="btnCancelar" layoutX="331.0" layoutY="273.0" mnemonicParsing="false" onAction="#cerrarAplicacion" text="Cancelar" />
             <Button fx:id="btnRegistrar" layoutX="433.0" layoutY="273.0" mnemonicParsing="false" onAction="#registrar" text="Registrar" />
