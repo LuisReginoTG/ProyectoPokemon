@@ -1,5 +1,6 @@
 package main;
 
+import controller.LoguinController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,9 +11,18 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../view/loguin.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("../view/loguin.fxml"));
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/loguin.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        
         primaryStage.setTitle("Proyecto Pokémon");
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setScene(scene);
+        
+        LoguinController controller = loader.getController();
+        controller.setStage(primaryStage);
+        
         primaryStage.show();
         
     }
