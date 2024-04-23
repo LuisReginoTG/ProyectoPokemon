@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.Connection;
 import java.util.LinkedList;
 
 public class Entrenador {
@@ -7,12 +8,12 @@ public class Entrenador {
 	private int idEntrador;
 	private String nombre;
 	private String pass;
-	private double pokedollares;
+	private int pokedollares;
 	private LinkedList<Pokemon> equipoPrincipal;
 	private LinkedList<Pokemon> pokemonCaja;
 	
 	
-	public Entrenador(int idEntrador, String nombre, String pass, double pokedollares,
+	public Entrenador(int idEntrador, String nombre, String pass, int pokedollares,
 			LinkedList<Pokemon> equipoPrincipal, LinkedList<Pokemon> pokemonCaja) {
 		super();
 		this.idEntrador = idEntrador;
@@ -65,12 +66,12 @@ public class Entrenador {
 	}
 
 
-	public double getPokedollares() {
+	public int getPokedollares() {
 		return pokedollares;
 	}
 
 
-	public void setPokedollares(double pokedollares) {
+	public void setPokedollares(int pokedollares) {
 		this.pokedollares = pokedollares;
 	}
 
@@ -100,6 +101,9 @@ public class Entrenador {
 		return "Entrenador [idEntrador=" + idEntrador + ", nombre=" + nombre + ", pass=" + pass + ", pokedollares="
 				+ pokedollares + ", equipoPrincipal=" + equipoPrincipal + ", pokemonCaja=" + pokemonCaja + "]";
 	}
+
+
+	
 	
 	
 	

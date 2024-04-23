@@ -8,9 +8,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 import com.mysql.cj.protocol.Resultset;
 
 import bd.DataBaseConnection;
+import bd.EntrenadorCrud;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +26,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import model.Entrenador;
 
 public class LoguinController {
 	
@@ -33,9 +37,6 @@ public class LoguinController {
 
 	@FXML
 	private Button btnCancelar;
-
-	@FXML
-	private Button btnRegistrar;
 
 	@FXML
 	private ImageView imgFondoLoguin;
@@ -73,7 +74,7 @@ public class LoguinController {
 
 	@FXML
 	public void loguearse(ActionEvent event) {
-		Object evt = event.getSource();
+		//Object evt = event.getSource();
 
 		if (txtUsuario.getText().isEmpty()) {
 			lblError.setText("Error: Inserta nombre de usuario");
@@ -98,31 +99,30 @@ public class LoguinController {
 				ps.setString(1, usuario);
 				
 				ResultSet rs = ps.executeQuery();
-
+				
+				Entrenador entrenador = new Entrenador(usuario, pass);
+				
 				if(!rs.isBeforeFirst()) {
-					lblError.setText("Usuario no registrado");
-					lblError.setVisible(true);
+//					lblError.setText("Usuario no registrado");
+//					lblError.setVisible(true);
+					
+					int opcion = JOptionPane.showConfirmDialog(null, "Usuario no registrado, ¿desea registrarlo?");
+					
+					if(opcion == JOptionPane.YES_OPTION) {
+						
+						EntrenadorCrud.crearEntrenador(conexion, entrenador);
+						abrirMenuPrincipal(entrenador);
+						
+					}else {
+						txtPass.setText("");
+					}
 				}else {
 					while (rs.next()) {
 						if (rs.getString(1).equals(pass)) {
 							System.out.println("Usuario encontrado");
 							//Cambiamos de ventana
-							try {
-								FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/principal.fxml"));
-								Parent root = loader.load();
-								PrincipalController principalController = loader.getController();
-								Scene scene = new Scene(root);
-								Stage stage = new Stage();
-								stage.setScene(scene);//Cargamos la escena en el stage
-								
-								principalController.init(usuario, pass, stage, this);
-								stage.show();
-								this.stage.close();
-								
-								
-							}catch(IOException e) {
-								e.printStackTrace();
-							}
+							EntrenadorCrud.obtenerIDPokedolaresEntre(conexion,entrenador );
+							abrirMenuPrincipal(entrenador);
 							
 							
 						}else {
@@ -139,9 +139,23 @@ public class LoguinController {
 		}
 	}
 
-	@FXML
-	void registrar(ActionEvent event) {
-
+	private void abrirMenuPrincipal(Entrenador ent) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/principal.fxml"));
+			Parent root = loader.load();
+			PrincipalController principalController = loader.getController();
+			Scene scene = new Scene(root);
+			Stage stage = new Stage();
+			stage.setScene(scene);//Cargamos la escena en el stage
+			
+			principalController.init(ent, stage, this);
+			stage.show();
+			this.stage.close();
+			
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void show() {

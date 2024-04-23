@@ -49,11 +49,12 @@ public class PrincipalController {
     @FXML
     private Label lblUsuario;
 
-	public void init(String usuario, String pass, Stage stage2, LoguinController loguinController) {
-		lblUsuario.setText(usuario);
+	public void init(Entrenador ent, Stage stage2, LoguinController loguinController) {
+		lblUsuario.setText(ent.getNombre());
+		lblPokedollares.setText(Double.toString(ent.getPokedollares()));
 		this.loginController =loguinController;
 		this.stage = stage2;
-		this.entrador = new Entrenador(usuario, pass);
+		this.entrador = ent;
 //		cargarEquipo(EQUIPOPRINCIPAL);//EquipoPrincipal
 //		cargarEquipo(EQUIPOSECUNDARIO);//EquipoSencudario
 //		cargarMochilaEntrenador();
