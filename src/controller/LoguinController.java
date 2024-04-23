@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -25,12 +26,17 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import model.Entrenador;
 
 public class LoguinController {
-	
+
 	private Stage stage;
+	private boolean sonido = true;
+	private MediaPlayer mediaPlayer;
 
 	@FXML
 	private Button btnAceptar;
@@ -60,6 +66,9 @@ public class LoguinController {
 	private TextField txtUsuario;
 
 	@FXML
+	private ImageView imgSonido;
+
+	@FXML
 	public void cerrarAplicacion(ActionEvent event) {
 		Stage stage = (Stage) btnCancelar.getScene().getWindow();
 		stage.close();
@@ -74,7 +83,7 @@ public class LoguinController {
 
 	@FXML
 	public void loguearse(ActionEvent event) {
-		//Object evt = event.getSource();
+		// Object evt = event.getSource();
 
 		if (txtUsuario.getText().isEmpty()) {
 			lblError.setText("Error: Inserta nombre de usuario");
@@ -86,9 +95,7 @@ public class LoguinController {
 			String usuario = txtUsuario.getText();
 			String pass = txtPass.getText();
 
-			String sql = "SELECT PASSWORD\n"
-					+ "FROM ENTRENADOR\n"
-					+ "WHERE NOM_ENTRENADOR = ?";
+			String sql = "SELECT PASSWORD\n" + "FROM ENTRENADOR\n" + "WHERE NOM_ENTRENADOR = ?";
 
 			DataBaseConnection con = new DataBaseConnection();
 
@@ -97,35 +104,34 @@ public class LoguinController {
 			try {
 				PreparedStatement ps = conexion.prepareStatement(sql);
 				ps.setString(1, usuario);
-				
+
 				ResultSet rs = ps.executeQuery();
-				
+
 				Entrenador entrenador = new Entrenador(usuario, pass);
-				
-				if(!rs.isBeforeFirst()) {
+
+				if (!rs.isBeforeFirst()) {
 //					lblError.setText("Usuario no registrado");
 //					lblError.setVisible(true);
-					
+
 					int opcion = JOptionPane.showConfirmDialog(null, "Usuario no registrado, ¿desea registrarlo?");
-					
-					if(opcion == JOptionPane.YES_OPTION) {
-						
+
+					if (opcion == JOptionPane.YES_OPTION) {
+
 						EntrenadorCrud.crearEntrenador(conexion, entrenador);
 						abrirMenuPrincipal(entrenador);
-						
-					}else {
+
+					} else {
 						txtPass.setText("");
 					}
-				}else {
+				} else {
 					while (rs.next()) {
 						if (rs.getString(1).equals(pass)) {
 							System.out.println("Usuario encontrado");
-							//Cambiamos de ventana
-							EntrenadorCrud.obtenerIDPokedolaresEntre(conexion,entrenador );
+							// Cambiamos de ventana
+							EntrenadorCrud.obtenerIDPokedolaresEntre(conexion, entrenador);
 							abrirMenuPrincipal(entrenador);
-							
-							
-						}else {
+
+						} else {
 							lblError.setText("Contraseña incorrecta");
 							lblError.setVisible(true);
 						}
@@ -146,14 +152,13 @@ public class LoguinController {
 			PrincipalController principalController = loader.getController();
 			Scene scene = new Scene(root);
 			Stage stage = new Stage();
-			stage.setScene(scene);//Cargamos la escena en el stage
-			
+			stage.setScene(scene);// Cargamos la escena en el stage
+
 			principalController.init(ent, stage, this);
 			stage.show();
 			this.stage.close();
-			
-			
-		}catch(IOException e) {
+
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -163,12 +168,21 @@ public class LoguinController {
 		lblError.setVisible(false);
 		txtUsuario.setText("");
 		txtPass.setText("");
-		
+
 	}
 
 	public void setStage(Stage primaryStage) {
 		stage = primaryStage;
-		
+//		String ruta = "../../sonidos/Opening.mp3";
+//		Media sound = new Media(new File(ruta).toURI().toString());
+//		mediaPlayer = new MediaPlayer(sound);
+//		mediaPlayer.play();
+
+	}
+
+	@FXML
+	void activarDesactivarSonido(MouseEvent event) {
+
 	}
 
 }

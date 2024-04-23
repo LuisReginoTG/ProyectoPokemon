@@ -67,6 +67,11 @@
                   <Image url="@../../img/pokemon_video_game_logo.png" />
                </image>
             </ImageView>
+            <ImageView fx:id="imgSonido" fitHeight="41.0" fitWidth="44.0" layoutX="14.0" layoutY="337.0" onMousePressed="#activarDesactivarSonido" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../img/sonidoact.png" />
+               </image>
+            </ImageView>
       </children>
     </AnchorPane>
   </children>
