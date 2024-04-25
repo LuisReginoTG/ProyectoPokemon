@@ -1,5 +1,10 @@
 package controller;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import bd.DataBaseConnection;
+import bd.PokemonCrud;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,7 +17,7 @@ public class PrincipalController {
 	public static final int EQUIPOPRINCIPAL =1;
 	public static final int EQUIPOSECUNDARIO =2;
 	
-	private Entrenador entrador;
+	private Entrenador entrenador;
 	private Stage stage;
 	private LoguinController loginController;
 
@@ -54,9 +59,19 @@ public class PrincipalController {
 		lblPokedollares.setText(Double.toString(ent.getPokedollares()));
 		this.loginController =loguinController;
 		this.stage = stage2;
-		this.entrador = ent;
-//		cargarEquipo(EQUIPOPRINCIPAL);//EquipoPrincipal
-//		cargarEquipo(EQUIPOSECUNDARIO);//EquipoSencudario
+		this.entrenador = ent;
+		DataBaseConnection con = new DataBaseConnection();
+
+		Connection conexion = con.getConnection();
+		
+		try {
+			PokemonCrud.obtenerPokemon(conexion, this.entrenador,EQUIPOPRINCIPAL);
+			PokemonCrud.obtenerPokemon(conexion, this.entrenador,EQUIPOSECUNDARIO);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}//EquipoPrincipal
+
 //		cargarMochilaEntrenador();
 	}
 
