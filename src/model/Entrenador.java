@@ -11,10 +11,11 @@ public class Entrenador {
 	private int pokedollares;
 	private LinkedList<Pokemon> equipoPrincipal;
 	private LinkedList<Pokemon> pokemonCaja;
+	private LinkedList<ObjetosPokemon> listaObjetos;
 	
 	
 	public Entrenador(int idEntrador, String nombre, String pass, int pokedollares,
-			LinkedList<Pokemon> equipoPrincipal, LinkedList<Pokemon> pokemonCaja) {
+			LinkedList<Pokemon> equipoPrincipal, LinkedList<Pokemon> pokemonCaja, LinkedList<ObjetosPokemon> listaObjetos) {
 		super();
 		this.idEntrador = idEntrador;
 		this.nombre = nombre;
@@ -22,6 +23,7 @@ public class Entrenador {
 		this.pokedollares = pokedollares;
 		this.equipoPrincipal = equipoPrincipal;
 		this.pokemonCaja = pokemonCaja;
+		this.listaObjetos = listaObjetos;
 	}
 
 
@@ -96,13 +98,25 @@ public class Entrenador {
 	}
 
 
-	@Override
-	public String toString() {
-		return "Entrenador [idEntrador=" + idEntrador + ", nombre=" + nombre + ", pass=" + pass + ", pokedollares="
-				+ pokedollares + ", equipoPrincipal=" + equipoPrincipal + ", pokemonCaja=" + pokemonCaja + "]";
+	public LinkedList<ObjetosPokemon> getListaObjetos() {
+		return listaObjetos;
 	}
 
 
+	public void setListaObjetos(LinkedList<ObjetosPokemon> listaObjetos) {
+		this.listaObjetos = listaObjetos;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Entrenador [idEntrador=" + idEntrador + ", nombre=" + nombre + ", pass=" + pass + ", pokedollares="
+				+ pokedollares + ", equipoPrincipal=" + equipoPrincipal + ", pokemonCaja=" + pokemonCaja
+				+ ", listaObjetos=" + listaObjetos + "]";
+	}
+
+
+	
 	
 	
 	
