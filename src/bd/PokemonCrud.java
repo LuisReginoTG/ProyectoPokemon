@@ -54,8 +54,8 @@ public class PokemonCrud {
 			poke.setDefensa(rs.getInt(12));
 			poke.setMote(rs.getString(13));
 			poke.setNivel(rs.getInt(14));
-			//poke.setMovimientos(obtenerMovimientos(poke.getIdPokemon()));
-			//poke.setObjeto(obtenerObjeto(poke.getIdPokemon()));
+			//poke.setMovimientos(obtenerMovimientos(conexion, poke.getIdPokemon()));
+			//poke.setObjeto(obtenerObjeto(conexion, poke.getIdPokemon()));
 			listadoPokemon.add(poke);
 		}
 		
