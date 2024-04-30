@@ -24,6 +24,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -36,6 +37,7 @@ public class LoguinController {
 	
 	private Stage stage;
 	private MediaPlayer mediaPlayer;
+	private boolean sonido = false;
 
 	@FXML
 	private Button btnAceptar;
@@ -182,17 +184,41 @@ public class LoguinController {
 	
     @FXML
     public void activarDesactivarSonido(MouseEvent event) {
-
+    	sonido(); //Llamamos a la activación o desactivación del sonido
     }
+
+	/**
+	 * Método generico que activa o desactiva el sonido en el Login
+	 */
+	public void sonido() {
+		/*
+		 * Tened en cuenta que hay que añadir la ruta del Media en los argumentos de la ejecución
+		 * 		--add-modules javafx.controls,javafx.fxml,javafx.media,javafx.graphics
+		 * 
+		 */
+		
+		if(!this.sonido) {
+    		String sonido ="./sonidos/Opening.mp3";
+    		Media sound = new Media(new File(sonido).toURI().toString());
+    		
+    		mediaPlayer = new MediaPlayer(sound);
+    		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+    		mediaPlayer.play();
+    		imgSonido.setImage(new Image(new File("./img/sonidoact.png").toURI().toString()));
+    		this.sonido=true;
+    	}else {
+    		mediaPlayer.stop();
+    		this.sonido=false;
+    		imgSonido.setImage(new Image(new File("./img/sonidodes.png").toURI().toString()));
+    	}
+	}
     
     @FXML
 	public void initialize() {
-//    	String sonido ="Opening.wav";
-//		Media sound = new Media(new File(sonido).toURI().toString());
-//		
-//		mediaPlayer = new MediaPlayer(sound);
-//		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-//		mediaPlayer.play();
+    	sonido();	//Llamamos a la activación o desactivación del sonido
+    	
     }
+    
+    
 
 }
