@@ -23,7 +23,7 @@ public class Pokemon {
  
     private int fertilidad;
     private boolean sexo;
-    static Movimiento[] movimientos = new Movimiento[4];
+    static LinkedList<Movimiento> movimientos;
     static Tipo tipo1;
     static Tipo tipo2;
     private int nivelEvolucion;
@@ -145,7 +145,7 @@ public class Pokemon {
     public Pokemon(int idPokemon, int numPokedex, String nombre, String mote, int nivel, int experienciaObtenida,
                    int vitalidad, int vitalidadActual, int ataque, int ataqueEspecial, int defensa, int defensaEspecial,
                    int velocidad, int estamina, int estaminaActual, int fertilidad, boolean sexo,
-                   Movimiento[] movimientos , Tipo tipo1, Tipo tipo2, int nivelEvolucion,
+                   LinkedList<Movimiento> movimientos , Tipo tipo1, Tipo tipo2, int nivelEvolucion,
                    String estado, Objeto objeto, String imgFrontal, String imgTrasera) {
         super();
         this.idPokemon = idPokemon;
@@ -288,10 +288,10 @@ public class Pokemon {
         this.estado = estado;
     }
  
-    public static Movimiento[] getMovimientos() {
+    public static LinkedList<Movimiento> getMovimientos() {
         return movimientos;
     }
-    public void setMovimientos(Movimiento[] movimientos) {
+    public void setMovimientos(LinkedList<Movimiento> movimientos) {
         this.movimientos = movimientos;
     }
  

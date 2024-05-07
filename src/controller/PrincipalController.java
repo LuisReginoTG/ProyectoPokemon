@@ -1,17 +1,23 @@
 package controller;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
 import bd.DataBaseConnection;
 import bd.PokemonCrud;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Entrenador;
+import controller.CombateController;
 
 public class PrincipalController {
 	public static final int EQUIPOPRINCIPAL =1;
@@ -81,4 +87,52 @@ public class PrincipalController {
     	loginController.show();
     	stage.close();
     }
+    
+    @FXML
+    void irCaptura(ActionEvent event) {
+    	
+    }
+
+    @FXML
+    void irCombate(ActionEvent event) {
+    	try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/combate.fxml"));
+			Parent root = loader.load();
+			CombateController combateController = loader.getController();
+			Scene scene = new Scene(root);
+			Stage stage = new Stage();
+			stage.setScene(scene);//Cargamos la escena en el stage
+			
+			combateController.init(entrenador, stage, this);
+			stage.show();
+			this.stage.close();
+			
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+    }
+
+    @FXML
+    void irEntrenar(ActionEvent event) {
+
+    }
+
+    @FXML
+    void irEquipo(ActionEvent event) {
+
+    }
+
+    @FXML
+    void irHospital(ActionEvent event) {
+
+    }
+
+    @FXML
+    void irTienda(ActionEvent event) {
+
+    }
+
+
+
 }

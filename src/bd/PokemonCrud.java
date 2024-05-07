@@ -18,7 +18,8 @@ public class PokemonCrud {
 				+ "		PX.NOM_POKEMON,\r\n"
 				+ "		PX.TIPO1,\r\n"
 				+ "		PX.TIPO2,\r\n"
-				+ "		PX.IMAGEN,\r\n"
+				+ "		PX.IMAGEN_FRONT,\r\n"
+				+ "		PX.IMAGEN_BACK,\r\n"
 				+ "		PX.SONIDO,\r\n"
 				+ "		PX.NIVEL_EVOLUCION,\r\n"
 				+ "		PX.NUM_POKEDEX_EVO,\r\n"
@@ -48,13 +49,14 @@ public class PokemonCrud {
 			poke.setTipoPrimario(Tipo.convertirTipoDesdeString(rs.getString(4)));
 			poke.setTipoSecundario(Tipo.convertirTipoDesdeString(rs.getString(5)));
 			poke.setImgFrontal(rs.getString(6));
-			poke.setNivelEvolucion(rs.getInt(8));
-			poke.setAtaque(rs.getInt(10));
-			poke.setAtaqueEspecial(rs.getInt(11));
-			poke.setDefensa(rs.getInt(12));
-			poke.setMote(rs.getString(13));
-			poke.setNivel(rs.getInt(14));
-			//poke.setMovimientos(obtenerMovimientos(conexion, poke.getIdPokemon()));
+			poke.setImgFrontal(rs.getString(7));
+			poke.setNivelEvolucion(rs.getInt(9));
+			poke.setAtaque(rs.getInt(11));
+			poke.setAtaqueEspecial(rs.getInt(12));
+			poke.setDefensa(rs.getInt(13));
+			poke.setMote(rs.getString(14));
+			poke.setNivel(rs.getInt(15));
+			poke.setMovimientos(MovimientoCrud.obtenerMovimientos(conexion, poke.getIdPokemon()));
 			//poke.setObjeto(obtenerObjeto(conexion, poke.getIdPokemon()));
 			listadoPokemon.add(poke);
 		}
