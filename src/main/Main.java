@@ -25,9 +25,7 @@ public class Main extends Application {
         
         LoguinController controller = loader.getController();
         controller.setStage(primaryStage);
-        
-        primaryStage.show();
-        
+      
     }
 
 

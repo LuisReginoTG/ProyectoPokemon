@@ -74,7 +74,7 @@ public class PrincipalController {
 			PokemonCrud.obtenerPokemon(conexion, this.entrenador,EQUIPOPRINCIPAL);
 			PokemonCrud.obtenerPokemon(conexion, this.entrenador,EQUIPOSECUNDARIO);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}//EquipoPrincipal
 

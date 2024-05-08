@@ -75,7 +75,10 @@ public class CombateController {
 		this.stage = stage;
 		this.ent = entrenador;
 		
-		btnMov1.setText("Placaje");
+		btnMov1.setText(this.ent.getEquipoPrincipal().get(0).getMovimientos().get(0).getNombre());
+		btnMov1.setText(this.ent.getEquipoPrincipal().get(0).getMovimientos().get(1).getNombre());
+		btnMov1.setText(this.ent.getEquipoPrincipal().get(0).getMovimientos().get(2).getNombre());
+		btnMov1.setText(this.ent.getEquipoPrincipal().get(0).getMovimientos().get(3).getNombre());
 		
 	}
 
