@@ -37,7 +37,7 @@ public class MovimientoCrud {
 		ps.setInt(1, idPokemon);
 
 		ResultSet rs = ps.executeQuery();
-		LinkedList<Movimiento> listadoMovimientos = null;
+		LinkedList<Movimiento> listadoMovimientos = new LinkedList<Movimiento>();
 
 		while (rs.next()) {
 			if (!rs.getString(8).equals("")) {//Mejora
