@@ -81,5 +81,10 @@ public class CombateController {
 		btnMov1.setText(this.ent.getEquipoPrincipal().get(0).getMovimientos().get(3).getNombre());
 		
 	}
+	
+    @FXML
+    void salirCombate(ActionEvent event) {
+
+    }
 
 }
